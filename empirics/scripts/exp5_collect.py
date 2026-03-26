@@ -27,12 +27,19 @@ K = 50
 TEMPERATURE = 0.8
 
 # Pinned generation → model mapping
+# Verified 2026-03-26: text-davinci-001 and text-davinci-003 are deprecated (404).
+# gen1 substituted with davinci-002 (nearest accessible GPT-3-era checkpoint;
+# completions API; training cutoff ~2021-09 — document in pre-registration as deviation).
+# gen2/gen3/gen4 confirmed available.
 GENERATION_MODELS = {
-    "gen1": "text-davinci-001",     # Verify availability before running
+    "gen1": "davinci-002",          # Fallback: text-davinci-001 deprecated 2024-01
     "gen2": "gpt-3.5-turbo-0125",
     "gen3": "gpt-4-0613",
     "gen4": "gpt-4o-2024-08-06",
 }
+# PRE-REGISTRATION NOTE: gen1 cutoff is ~2021-09 (not ~2020 as originally planned).
+# This compresses the gen1→gen2 gap. Report as limitation. Diachronic claim remains
+# testable across gen2→gen4; gen1 interpreted as "early RLHF-era baseline".
 
 # E5 concept IDs — 10 changing-salience + 10 stable (subset of E2 concepts)
 CHANGING_CONCEPTS = [
@@ -65,14 +72,27 @@ def collect(concepts: list[dict], prompts: dict, dry_run: bool) -> None:
                 continue
 
             try:
-                resp = client.chat.completions.create(
-                    model=model_id,
-                    messages=[{"role": "system", "content": SYSTEM},
-                              {"role": "user",   "content": user_prompt}],
-                    temperature=TEMPERATURE,
-                    n=K,
-                )
-                for i, choice in enumerate(resp.choices):
+                # davinci-002 uses the legacy completions endpoint, not chat
+                if model_id == "davinci-002":
+                    resp = client.completions.create(
+                        model=model_id,
+                        prompt=f"{SYSTEM}\n\n{user_prompt}",
+                        temperature=TEMPERATURE,
+                        max_tokens=300,
+                        n=K,
+                    )
+                    choices_text = [c.text for c in resp.choices]
+                else:
+                    resp = client.chat.completions.create(
+                        model=model_id,
+                        messages=[{"role": "system", "content": SYSTEM},
+                                  {"role": "user",   "content": user_prompt}],
+                        temperature=TEMPERATURE,
+                        n=K,
+                    )
+                    choices_text = [c.message.content for c in resp.choices]
+
+                for i, text in enumerate(choices_text):
                     records.append({
                         "concept":       concept,
                         "concept_type":  concept_type,
@@ -80,7 +100,7 @@ def collect(concepts: list[dict], prompts: dict, dry_run: bool) -> None:
                         "model":         model_id,
                         "temperature":   TEMPERATURE,
                         "response_index": i,
-                        "response":      choice.message.content,
+                        "response":      text,
                     })
             except Exception as e:
                 logger.error(f"  Failed {gen_key}/{concept}: {e}")

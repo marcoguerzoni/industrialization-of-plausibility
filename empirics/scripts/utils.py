@@ -256,3 +256,36 @@ def save_numpy(arr: np.ndarray, path: Path) -> None:
 
 def load_numpy(path: Path) -> np.ndarray:
     return np.load(path)
+
+
+# ── Wikipedia helpers ──────────────────────────────────────────────────────────
+
+WIKI_HEADERS = {
+    "User-Agent": "IndustrializationOfPlausibility/1.0 (research; contact: marco.guerzoni@unimib.it)"
+}
+WIKI_API = "https://en.wikipedia.org/w/api.php"
+
+
+def wiki_intro_length(concept: str) -> Optional[int]:
+    """Character length of the English Wikipedia intro section, or None if not found."""
+    import requests
+    params = {
+        "action": "query", "prop": "extracts", "exintro": True,
+        "explaintext": True, "titles": concept, "format": "json", "redirects": 1,
+    }
+    r = requests.get(WIKI_API, params=params, headers=WIKI_HEADERS, timeout=10)
+    page = next(iter(r.json()["query"]["pages"].values()))
+    text = page.get("extract")
+    return len(text) if text else None
+
+
+def wiki_edit_count(concept: str) -> Optional[int]:
+    """Total number of revisions for a Wikipedia article (proxy for contestation)."""
+    import requests
+    params = {
+        "action": "query", "prop": "revisions", "rvprop": "ids",
+        "rvlimit": "max", "titles": concept, "format": "json", "redirects": 1,
+    }
+    r = requests.get(WIKI_API, params=params, headers=WIKI_HEADERS, timeout=10)
+    page = next(iter(r.json()["query"]["pages"].values()))
+    return len(page.get("revisions", []))

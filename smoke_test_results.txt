@@ -1,0 +1,10 @@
+gpt-4o-2024-08-06: [PASS] OK
+gpt-3.5-turbo-0125: [PASS] OK
+gpt-4-0613: [PASS] OK
+davinci-002 (gen1 fallback): [PASS] OK
+text-embedding-3-large: [PASS] OK dim=3072
+wordfreq: [PASS] OK (nurse zipf=4.40)
+nltk wordnet: [PASS] OK (18 synsets for bank)
+nltk semcor: [PASS] OK
+wikipedia api: [PASS] OK (1534 chars for Nurse)
+huggingface datasets: [PASS] OK (v4.8.4)
