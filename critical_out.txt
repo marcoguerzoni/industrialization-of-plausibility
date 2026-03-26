@@ -1,0 +1,132 @@
+Building SemCor index (single pass)...
+  Index built: 35257 lemmas
+item_id  word           depth    dominant                       enc_sense                      source               sense e_zip  d_zip  tier         critical
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+E4_001   vaccine        shallow  vaccine.n.01                   vaccine.n.01                   wordnet_ordering(0)  SAME  3.97   3.01   -            
+E4_002   virus          shallow  virus.n.01                     virus.n.01                     wordnet_ordering(0)  SAME  4.09   3.17   -            
+E4_003   antibiotic     shallow  antibiotic.n.01                antibiotic.n.01                wordnet_ordering(0)  SAME  4.55   4.19   -            
+E4_004   gene           shallow  gene.n.01                      gene.n.01                      wordnet_ordering(0)  SAME  4.18   4.53   -            
+E4_005   fossil         shallow  dodo.n.01                      fossil.n.01                    wordnet_ordering(0)  SAME  4.41   3.75   -            
+E4_006   telescope      shallow  telescope.n.01                 telescope.n.01                 wordnet_ordering(0)  SAME  3.35   3.63   T3_manual    CRITICAL
+E4_007   compass        shallow  scope.n.01                     compass.n.01                   semcor(62)           SAME  3.33   4.03   T3_manual    CRITICAL
+E4_008   quarantine     shallow  quarantine.n.01                quarantine.n.01                wordnet_ordering(0)  SAME  4.31   4.02   T3_manual    CRITICAL
+E4_009   famine         shallow  dearth.n.01                    famine.n.01                    wordnet_ordering(0)  SAME  4.24   3.9    T3_manual    CRITICAL
+E4_010   inflation      shallow  inflation.n.01                 inflation.n.01                 wordnet_ordering(0)  SAME  3.92   4.88   -            
+E4_011   protest        shallow  protest.n.01                   protest.n.01                   semcor(12)           SAME  2.04   4.06   -            
+E4_012   strike         shallow  strike.n.01                    strike.n.02                    semcor(7)            DIFF  3.27   4.59   T1_auto      CRITICAL
+E4_013   satellite      shallow  satellite.n.01                 satellite.n.01                 semcor(4)            SAME  3.86   4.03   -            
+E4_014   asteroid       shallow  asteroid.n.01                  asteroid.n.01                  wordnet_ordering(0)  SAME  3.76   4.03   T3_manual    CRITICAL
+E4_015   climate        shallow  climate.n.02                   climate.n.01                   semcor(8)            SAME  4.07   4.87   -            
+E4_016   contract       medium   contract.n.01                  contract.n.01                  semcor(19)           SAME  2.27   4.88   T3_manual    CRITICAL
+E4_017   mortgage       medium   mortgage.n.01                  mortgage.n.01                  wordnet_ordering(0)  SAME  2.33   4.68   -            
+E4_018   patent         medium   patent.n.01                    patent.n.01                    semcor(5)            SAME  1.13   4.04   -            
+E4_019   censorship     medium   censoring.n.01                 censorship.n.01                wordnet_ordering(0)  SAME  2.77   3.68   T3_manual    CRITICAL
+E4_020   monopoly       medium   monopoly.n.01                  monopoly.n.01                  semcor(5)            SAME  4.26   5.4    -            
+E4_021   tariff         medium   duty.n.03                      tariff.n.01                    wordnet_ordering(0)  SAME  3.64   3.88   T3_manual    CRITICAL
+E4_022   asylum         medium   refuge.n.03                    asylum.n.02                    wordnet_ordering(0)  DIFF  1.66   3.91   T1_auto      CRITICAL
+E4_023   dividend       medium   dividend.n.01                  dividend.n.01                  semcor(5)            SAME  3.63   4.7    -            
+E4_024   algorithm      medium   algorithm.n.01                 algorithm.n.01                 wordnet_ordering(0)  SAME  4.18   4.44   -            
+E4_025   arbitration    medium   arbitration.n.01               arbitration.n.01               wordnet_ordering(0)  SAME  4.13   4.27   -            
+E4_026   subsidy        medium   subsidy.n.01                   subsidy.n.01                   wordnet_ordering(0)  SAME  3.17   5.53   -            
+E4_027   leverage       medium   leverage.n.01                  leverage.n.02                  wordnet_ordering(0)  DIFF  3.03   4.33   T1_auto      CRITICAL
+E4_028   zoning         medium   zoning.n.01                    zoning.n.01                    wordnet_ordering(0)  SAME  3.6    5.22   T3_manual    CRITICAL
+E4_029   encryption     medium   encoding.n.01                  encryption.n.01                wordnet_ordering(0)  SAME  3.03   3.12   -            
+E4_030   austerity      medium   austerity.n.01                 austerity.n.01                 wordnet_ordering(0)  SAME  2.06   4.06   T3_manual    CRITICAL
+E4_031   loom           deep     loom.n.01                      loom.n.01                      wordnet_ordering(0)  SAME  0.0    3.53   -            
+E4_032   enclosure      deep     enclosure.n.01                 enclosure.n.03                 wordnet_ordering(0)  DIFF  4.14   4.21   T1_auto      CRITICAL
+E4_033   telegraph      deep     telegraph.n.01                 telegraph.n.01                 wordnet_ordering(0)  SAME  3.73   4.68   -            
+E4_034   transistor     deep     transistor.n.01                transistor.n.01                wordnet_ordering(0)  SAME  3.8    3.45   -            
+E4_035   corn           deep     corn.n.01                      corn.n.01                      semcor(3)            SAME  3.56   4.18   -            
+E4_036   interest       deep     interest.n.01                  interest.n.03                  semcor(58)           DIFF  2.54   3.97   T1_auto      CRITICAL
+E4_037   plague         deep     plague.n.01                    plague.n.01                    wordnet_ordering(0)  SAME  2.49   3.8    -            
+E4_038   indigo         deep     anil.n.01                      indigo.n.02                    wordnet_ordering(0)  DIFF  3.68   3.82   T1_auto      CRITICAL
+E4_039   opium          deep     opium.n.01                     opium.n.01                     semcor(14)           SAME  3.86   3.0    T3_manual    CRITICAL
+E4_040   sugar          deep     sugar.n.01                     sugar.n.01                     semcor(4)            SAME  4.21   2.9    -            
+E4_041   cotton         deep     cotton.n.01                    cotton.n.01                    semcor(6)            SAME  4.21   3.67   -            
+E4_042   rubber         deep     rubber.n.01                    rubber.n.01                    wordnet_ordering(0)  SAME  3.03   3.4    T3_manual    CRITICAL
+E4_043   code           deep     code.n.01                      code.n.03                      semcor(10)           DIFF  3.91   4.55   T1_auto      CRITICAL
+E4_044   network        deep     network.n.01                   network.n.03                   semcor(23)           DIFF  4.17   4.39   T1_auto      CRITICAL
+E4_045   derivative     deep     derived_function.n.01          derivative.n.02                wordnet_ordering(0)  DIFF  3.16   3.6    T1_auto      CRITICAL
+E4_046   curriculum     deep     course_of_study.n.01           curriculum.n.01                semcor(7)            SAME  3.33   4.38   T3_manual    CRITICAL
+E4_047   prison         deep     prison.n.01                    prison.n.01                    wordnet_ordering(0)  SAME  3.36   3.46   T3_manual    CRITICAL
+E4_048   map            deep     function.n.01                  map.n.01                       semcor(43)           SAME  3.33   3.98   -            
+E4_049   border         deep     edge.n.01                      border.n.01                    semcor(27)           SAME  3.86   4.13   -            
+E4_050   standard       deep     standard.n.01                  standard.n.04                  semcor(16)           DIFF  4.51   5.11   T1_auto      CRITICAL
+
+================================================================
+CRITICAL ITEM SUMMARY  (target: ~8 per stratum)
+================================================================
+
+  SHALLOW (6/15 critical | T1=1, T2=0, T3=5)
+    [T3_manual]  E4_006  telescope
+               Telescope → Galileo affair: requires knowing that Galileo's instrument
+    [T3_manual]  E4_007  compass
+               Compass → colonial expansion: requires knowing that navigational techn
+    [T3_manual]  E4_008  quarantine
+               Quarantine → racially discriminatory enforcement: requires knowing the
+    [T3_manual]  E4_009  famine
+               Famine → political economy: requires knowing food was exported during 
+    [T1_auto]    E4_012  strike
+               dominant=strike.n.01
+               enc=strike.n.02
+    [T3_manual]  E4_014  asteroid
+               Asteroid → K-Pg mass extinction: requires knowing the Chicxulub impact
+
+  MEDIUM (7/15 critical | T1=2, T2=0, T3=5)
+    [T3_manual]  E4_016  contract
+               Contract → NDA in antitrust context: requires knowing how confidential
+    [T3_manual]  E4_019  censorship
+               Censorship → structural/algorithmic suppression: requires knowing that
+    [T3_manual]  E4_021  tariff
+               Tariff → incidence complexity: requires knowing that protection benefi
+    [T1_auto]    E4_022  asylum
+               dominant=refuge.n.03
+               enc=asylum.n.02
+    [T1_auto]    E4_027  leverage
+               dominant=leverage.n.01
+               enc=leverage.n.02
+    [T3_manual]  E4_028  zoning
+               Zoning → racial segregation: requires knowing US zoning history as ins
+    [T3_manual]  E4_030  austerity
+               Austerity → hidden distributional burden: requires knowing that defici
+
+  DEEP (11/20 critical | T1=7, T2=0, T3=4)
+    [T1_auto]    E4_032  enclosure
+               dominant=enclosure.n.01
+               enc=enclosure.n.03
+    [T1_auto]    E4_036  interest
+               dominant=interest.n.01
+               enc=interest.n.03
+    [T1_auto]    E4_038  indigo
+               dominant=anil.n.01
+               enc=indigo.n.02
+    [T3_manual]  E4_039  opium
+               Opium → EIC state-sponsored trade: requires knowing that the British E
+    [T3_manual]  E4_042  rubber
+               Rubber → Congo Free State atrocities: requires knowing Leopold II's fo
+    [T1_auto]    E4_043  code
+               dominant=code.n.01
+               enc=code.n.03
+    [T1_auto]    E4_044  network
+               dominant=network.n.01
+               enc=network.n.03
+    [T1_auto]    E4_045  derivative
+               dominant=derived_function.n.01
+               enc=derivative.n.02
+    [T3_manual]  E4_046  curriculum
+               Curriculum → colonial epistemic violence: requires knowing Macaulay's 
+    [T3_manual]  E4_047  prison
+               Prison → mass incarceration as economic policy: requires knowing that 
+    [T1_auto]    E4_050  standard
+               dominant=standard.n.01
+               enc=standard.n.04
+
+  TOTAL: 24 / 50 items tagged CRITICAL
+  T1 (sense+freq): 10
+  T2 (sense only): 0
+  T3 (manual):     14
+================================================================
+
+Locked file:  empirics/stimuli/exp4_minimal_pairs.csv
+Analysis:     empirics/stimuli/exp4_critical_analysis.csv
+Week 2 annotation task: verify all T3_manual items (kappa >= 0.80 required).
