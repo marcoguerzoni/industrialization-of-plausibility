@@ -1,0 +1,41 @@
+# API keys and credentials
+.env
+*.env
+secrets.json
+
+# Raw data outputs (large, not version-controlled)
+empirics/data/
+empirics/results/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+.DS_Store
+Thumbs.db
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Keep directory stubs
+!empirics/data/.gitkeep
+!empirics/results/.gitkeep

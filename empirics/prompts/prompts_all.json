@@ -1,0 +1,56 @@
+{
+  "system_prompt": "You are a helpful assistant. Respond in English only.",
+
+  "exp4": {
+    "description": "Dictionary-encyclopedia diagnostic. Disambiguation probe.",
+    "template": "What does the word '{target}' refer to in the following sentence? Provide a one-sentence explanation.\n\nSentence: {sentence}"
+  },
+
+  "exp1": {
+    "description": "Encyclopedic organization at scale.",
+    "templates": {
+      "neutral":       "Tell me about the {term}.",
+      "explicit_a":    "{explicit_a_prompt}",
+      "explicit_b":    "{explicit_b_prompt}",
+      "paraphrase_a":  "{paraphrase_a_prompt}",
+      "paraphrase_b":  "{paraphrase_b_prompt}"
+    }
+  },
+
+  "exp2": {
+    "description": "Schema conformity and overcoding.",
+    "template": "Write a short paragraph describing {concept}."
+  },
+
+  "exp5": {
+    "description": "Diachronic stability. Same template as E2.",
+    "template": "Write a short paragraph describing {concept}."
+  },
+
+  "exp3": {
+    "description": "Semiotic cost of context. Four canonical levels.",
+    "levels": {
+      "L0": "{vague_colloquial_request}",
+      "L1": "{domain_named_no_role_no_vocab_no_constraints}",
+      "L2": "{domain_named_role_assigned_vocab_included_no_constraints}",
+      "L3": "{domain_named_role_assigned_vocab_included_constraints_stated}"
+    },
+    "components": {
+      "D": "domain_specification",
+      "R": "role_assignment",
+      "V": "technical_vocabulary",
+      "C": "explicit_constraints"
+    },
+    "example_domain_landlord_tenant": {
+      "L0": "My landlord hasn't fixed the heating for three months and it's winter. What can I do?",
+      "L1": "I am a tenant and my landlord has failed to repair the heating system for three months. What are my legal options?",
+      "L2": "You are a housing law advisor. I am a residential tenant in England. My landlord has breached their repair obligation under Section 11 of the Landlord and Tenant Act 1985 by failing to repair central heating for three months. What remedies are available to me?",
+      "L3": "You are a specialist housing solicitor. I am a residential tenant in England under an assured shorthold tenancy. My landlord has failed to repair the central heating system for 90 days despite written notice, breaching Section 11 of the Landlord and Tenant Act 1985 and the Homes (Fitness for Human Habitation) Act 2018. Draft a formal letter before action identifying the breach, citing the relevant statutes, stating the remedies sought (repair within 14 days, compensation for discomfort), and the court proceedings that will follow if the landlord does not comply."
+    }
+  },
+
+  "exp3_judge": {
+    "description": "LLM-as-judge rubric prompt. Use a different model from the generator.",
+    "template": "You are evaluating the quality of an AI-generated response to a task in the domain of {domain}.\n\nGROUND TRUTH BENCHMARK:\n{ground_truth}\n\nRESPONSE TO EVALUATE:\n{response}\n\nRate the response on each of the following dimensions on a scale of 1 (very poor) to 5 (excellent):\n\n1. FACTUAL ACCURACY: How factually correct is the response relative to the ground truth? (1-5)\n2. PRACTICAL ACTIONABILITY: How practically useful and actionable is the response for someone facing this situation? (1-5)\n3. DOMAIN PRECISION: How precisely does the response use domain-specific terminology, standards, and norms? (1-5)\n\nRespond in this exact JSON format:\n{\"factual_accuracy\": <int>, \"practical_actionability\": <int>, \"domain_precision\": <int>, \"brief_justification\": \"<one sentence>\"}"
+  }
+}

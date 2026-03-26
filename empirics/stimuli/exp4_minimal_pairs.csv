@@ -1,0 +1,6 @@
+item_id,target_word,sentence_a,sense_a,sentence_b,sense_b,inferential_depth,is_critical_item,corpus_dominant_sense,encyclopedic_target_sense,ground_truth_b,annotator_kappa,notes
+E4_001,bank,"The lawyer checked the balance at the bank.",financial institution,"After the levee broke, the rescue team camped on the bank.",riverbank,shallow,FALSE,financial institution,riverbank,,,"template"
+E4_002,crane,"The engineer guided the crane over the steel frame.",lifting machine,"The ornithologist tracked the crane through the wetland reeds.",bird,shallow,FALSE,lifting machine,bird,,,"template"
+E4_003,pitch,"The coach praised the pitch that curved sharply inward.",throw/sport,"The contractor specified a 30-degree pitch for the new roof.",slope/angle,medium,FALSE,throw/sport,slope/angle,,,"template"
+E4_004,cell,"The scientist placed the sample in the cell for observation.",biological cell,"The activist described conditions in the cell as inhumane.",prison cell,shallow,TRUE,biological cell,prison cell,,,"critical: biological dominant in general corpus"
+E4_005,bar,"She ordered a drink at the bar.",drinking establishment,"He was called to the bar after ten years of study.",legal profession,medium,TRUE,drinking establishment,legal profession,,,"critical: pub/drinking dominant; legal is frequency-non-dominant"

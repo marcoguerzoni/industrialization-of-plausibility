@@ -1,0 +1,41 @@
+concept_id,concept,concept_type,stereotypy_rating_mean,stereotypy_rating_icc,coca_freq_rank,wikipedia_article_length_chars,matched_control_id,prototype_embedding_file,notes
+E2_C001,scientist,charged,,,,,"E2_N001",,person-concept; also in demographic sub-analysis
+E2_C002,leader,charged,,,,,"E2_N002",,person-concept
+E2_C003,beauty,charged,,,,,"E2_N003",,abstract concept
+E2_C004,family,charged,,,,,"E2_N004",,social concept
+E2_C005,success,charged,,,,,"E2_N005",,abstract concept
+E2_C006,poverty,charged,,,,,"E2_N006",,social concept
+E2_C007,crime,charged,,,,,"E2_N007",,abstract/social concept; also in demographic sub-analysis
+E2_C008,mental illness,charged,,,,,"E2_N008",,stigmatized concept
+E2_C009,old age,charged,,,,,"E2_N009",,person-concept
+E2_C010,justice,charged,,,,,"E2_N010",,abstract concept
+E2_C011,criminal,charged,,,,,"E2_N011",,person-concept; demographic sub-analysis
+E2_C012,nurse,charged,,,,,"E2_N012",,person-concept; demographic sub-analysis
+E2_C013,professor,charged,,,,,"E2_N013",,person-concept; demographic sub-analysis
+E2_C014,entrepreneur,charged,,,,,"E2_N014",,person-concept; demographic sub-analysis
+E2_C015,democracy,charged,,,,,"E2_N015",,political concept
+E2_C016,terrorism,charged,,,,,"E2_N016",,political/social concept
+E2_C017,motherhood,charged,,,,,"E2_N017",,social/gendered concept
+E2_C018,wealth,charged,,,,,"E2_N018",,economic concept
+E2_C019,intelligence,charged,,,,,"E2_N019",,psychological concept
+E2_C020,community,charged,,,,,"E2_N020",,social concept
+E2_N001,carpenter,control,,,,,,,"matched to E2_C001"
+E2_N002,librarian,control,,,,,,,"matched to E2_C002"
+E2_N003,symmetry,control,,,,,,,"matched to E2_C003"
+E2_N004,household,control,,,,,,,"matched to E2_C004"
+E2_N005,achievement,control,,,,,,,"matched to E2_C005"
+E2_N006,scarcity,control,,,,,,,"matched to E2_C006"
+E2_N007,incident,control,,,,,,,"matched to E2_C007"
+E2_N008,fatigue,control,,,,,,,"matched to E2_C008"
+E2_N009,seniority,control,,,,,,,"matched to E2_C009"
+E2_N010,arbitration,control,,,,,,,"matched to E2_C010"
+E2_N011,mechanic,control,,,,,,,"matched to E2_C011"
+E2_N012,technician,control,,,,,,,"matched to E2_C012"
+E2_N013,administrator,control,,,,,,,"matched to E2_C013"
+E2_N014,consultant,control,,,,,,,"matched to E2_C014"
+E2_N015,legislation,control,,,,,,,"matched to E2_C015"
+E2_N016,sabotage,control,,,,,,,"matched to E2_C016"
+E2_N017,parenthood,control,,,,,,,"matched to E2_C017"
+E2_N018,revenue,control,,,,,,,"matched to E2_C018"
+E2_N019,cognition,control,,,,,,,"matched to E2_C019"
+E2_N020,neighbourhood,control,,,,,,,"matched to E2_C020"

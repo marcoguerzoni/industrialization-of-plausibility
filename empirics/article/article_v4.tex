@@ -1,0 +1,1455 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage[hidelinks,colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{footmisc}
+\usepackage{csquotes}
+\usepackage{abstract}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+
+\onehalfspacing
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection.}{0.5em}{}
+
+\renewcommand{\abstractnamefont}{\normalfont\bfseries}
+\renewcommand{\abstracttextfont}{\normalfont\small}
+
+\title{\textbf{The Industrialization of Plausibility:\\Large Language Models and the Transformation of Semiosis}}
+
+\author{Marco Guerzoni\\[4pt]
+\small Department of Economics, Management and Statistics (DEMS)\\
+\small Universit\`a degli Studi di Milano-Bicocca\\
+\small \url{marco.guerzoni@unimib.it}}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Large Language Models (LLMs) generate discourse that is coherent, contextually
+adaptive, and plausible without being grounded in intentional consciousness or
+guaranteed reference. This article argues that semiotics---and Umberto Eco's
+conceptual vocabulary in particular---provides a uniquely productive framework
+for their analysis. It advances three theses: (1)~LLMs instantiate a
+computational form of Eco's encyclopedia, organizing meaning through
+contextually activated inferential networks rather than hierarchical lemmatic
+identity; (2)~they tend structurally toward overcoding and stereotypy,
+reproducing culturally dominant frames with an intensity that exceeds even
+their training-data distribution; and (3)~their effective use entails a
+semiotic cost of context that is unevenly distributed along existing lines of
+social stratification. Each thesis is connected to its operational proxy
+through an explicit theoretical-empirical bridge that specifies both the
+bridging assumption and the condition under which the semiotic interpretation
+would be disconfirmed. All three theses are tested through a five-experiment
+design moving from mechanism-level disambiguation (E4, E1), through
+synchronic and diachronic overcoding measures (E2, E5), to a combined
+prompt-factorial and user study (E3). The primary outcome for E2 is a
+pre-constructed schema-conformity score, not Shannon entropy; the user study
+in E3 measures semiotic cost on the \emph{production} side, not only as a
+quality differential. The central claim is that LLMs industrialize the
+production of plausible discourse in the specific sense that nineteenth-century
+mass production industrialized cultural goods: they separate the production
+of form from the labor of meaning, standardize the plausible at scale, and
+redistribute onto users and institutions the costs previously borne by the
+author.
+
+\smallskip
+\noindent\textbf{Keywords:} Large Language Models; semiotics; Umberto Eco;
+plausibility; encyclopedia; overcoding; semiotic cost; semiotic inequality;
+schema conformity; computational semiotics.
+\end{abstract}
+
+\bigskip
+
+%----------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+%----------------------------------------------------------------------
+
+The emergence of Large Language Models has made visible a condition that
+semiotics is uniquely equipped to describe: texts may be coherent, persuasive,
+and contextually appropriate without being grounded in either intentional
+consciousness or secure reference to the world. LLMs do not ``mean'' in any
+human sense, yet they generate utterances that appear meaningful. They do not
+``know'' in the robust epistemic sense, yet they produce statements that sound
+knowledgeable. What is at stake is not, in the first instance, truth, but
+\emph{plausibility}---and plausibility is a semiotic category before it is
+an epistemic one.\footnote{Plausibility is here distinguished from
+verisimilitude in the Popperian sense \citep{Popper1963}, which concerns
+the approximation of a theory to truth. Plausibility designates a property
+of discursive form: the capacity to appear acceptable within a given
+interpretive framework, independently of verification. It is, in Eco's
+terms, a property of the signifying surface rather than a relation to
+the world \citep{Eco1976}.}
+
+An utterance appears plausible when it successfully activates culturally
+sedimented expectations, recognizable inferential patterns, genre conventions,
+and shared background assumptions. It acquires force because it fits an
+encyclopedia of possible meanings and acceptable continuations rather than
+because it has been tested against the world.
+
+The \emph{industrialization} in the title names a specific transformation of
+the productive structure of semiosis, not a simple metaphor for scale. Since
+the mid-nineteenth century, industrialization has designated the separation
+of production from craft---the extraction of skilled labor's tacit competences
+into mechanical processes that can be operated at scale by less-skilled hands.
+Applied to discourse, industrialization means the separation of textual
+\emph{form} from the communicative \emph{labor} that ordinarily grounds it:
+the author's intentional positioning, their lived situatedness, their
+accountability to an interpretive community. LLMs achieve exactly this
+separation. They produce discourse at scale, at speed, and without the
+labor of meaning---that is, without the acts of positioning, commitment,
+and accountability that constitute discourse as a social practice. The result
+is not meaninglessness but a specifically \emph{industrial} form of plausibility:
+standardized, high-volume, and disconnected from the conditions that ordinarily
+warrant it.\footnote{This argument intersects with the Frankfurt School's
+analysis of the culture industry \citep{AdornoHorkheimer1944}, which identified
+in mass cultural production the standardization of form as a mechanism of
+ideological reproduction. The present account differs in identifying the
+mechanism as semiotic rather than primarily economic, and in focusing on
+the redistribution of interpretive labor rather than on the commodification
+of aesthetic experience. Eco himself engaged critically with the culture
+industry debate in \emph{Apocalittici e integrati} (1964), a text whose
+analytical logic is operative here even where it is not cited explicitly.}
+
+A growing body of scholarship has begun to address this phenomenon from semiotic
+perspectives. \citet{Leone2023} has outlined the essential tasks of a semiotics
+of AI, but does not specify what evidence would distinguish competing semiotic
+characterizations. \citet{Vromen2024} has reconceptualized LLMs as semiotic
+machines through Saussurean and Derridean theory, but the Derridean framework,
+as this article argues, dissolves the distinction between dictionary and
+encyclopedic organization rather than enabling its empirical test.
+\citet{PiantadosiHill2022} have argued that LLMs capture meaning through
+conceptual role, but do not distinguish flat relational structures from
+culturally stratified ones. \citet{NunesAntunes2024} have examined the
+philosophical challenges of machine semantics without operationalization.
+\citet{NotMinds2025} have reframed LLMs through Lotman's semiosphere as
+semiotic means rather than cognitive agents---a position this article
+endorses and develops empirically. \citet{LSM2025} has argued that LLMs
+operate predominantly at the level of the signifier while remaining
+disconnected from the conceptual signified---a claim that requires
+distinguishing, as the present article does, between dictionary-type and
+encyclopedia-type signifier organization. \citet{Tomalin2025} has extended
+the analysis to multimodal systems. \citet{HallMirrors2026} has employed
+Peircean categories to argue that basic LLMs exist in a hall of mirrors
+that newer architectures may be beginning to exit---a Peircean framing
+whose relevance to Eco's encyclopedia is discussed below. \citet{Bateman2024}
+has offered a discourse-analytic perspective on LLM behavior, providing the
+only prior contribution that applies systematic analysis to actual outputs
+rather than operating at the level of theoretical characterization.
+\citet{LackovaBennett2025} has proposed a biosemiotic framework connecting
+folding dynamics to meaning-production.\footnote{See also \citet{Signata2025}
+for a recent thematic issue on AI and digital semiotic spaces.}
+
+What is common to all of these contributions, with the partial exception of
+\citet{Bateman2024}, is that their central claims remain at the level of
+theoretical characterization: they propose frameworks, draw analogies, and
+identify challenges, but they do not specify the conditions under which
+their characterizations would be \emph{wrong}. An analogy that cannot fail
+is not analytically productive, and an account of LLM semiosis that fits
+any possible LLM behavior is not explanatory. This article addresses the
+gap by formulating each theoretical claim as a falsifiable prediction,
+specifying the operational proxy through which it is measured, and testing
+it against actual LLM outputs with pre-registered analysis plans.
+
+The argument is structured as follows. Section~\ref{sec:framework} introduces
+the three Eco concepts that ground the analysis. Section~\ref{sec:theses}
+formulates the three theses with explicit forward pointers to their experimental
+tests. Section~\ref{sec:bridge} formalizes the theoretical-empirical bridge.
+Section~\ref{sec:experiment} presents the five-experiment design.
+Section~\ref{sec:implications} derives the conditional implications.
+Section~\ref{sec:discussion} addresses the theory-measurement gap, scope
+limits, and adjacent literatures. Section~\ref{sec:conclusion} concludes.
+
+
+%----------------------------------------------------------------------
+\section{Eco's Semiotics as Analytical Framework}
+\label{sec:framework}
+%----------------------------------------------------------------------
+
+LLMs do not operate on things but on signifying forms. Their domain is
+textuality, discursivity, codification, and patterned relations among linguistic
+units. Even when they produce statements about the world, they do so through
+structures internal to discourse. This is why semiotics is not an ornamental
+perspective on LLMs but one of the most suitable disciplines for their analysis:
+it studies the conditions under which something functions as a sign, and LLMs
+are entirely dependent on those conditions.\footnote{This situates the present
+approach within what \citet{Harnad1990} calls the symbol grounding problem:
+the question of how symbols acquire meaning that is not merely parasitic on
+other symbols. LLMs, as their critics have noted (e.g., \citealt{Searle1980}),
+operate on ungrounded symbols---their ``meaning'' is derived, not original, in
+Harnad's sense. The present article does not resolve this debate but operates
+at a different level: not whether LLM signs are genuinely meaningful, but how
+the semiotic properties of their outputs function socially and culturally,
+regardless of their grounding status. This is a legitimate and important
+question even if grounding is denied.}
+
+Among semiotic traditions, Eco's provides three concepts of particular
+analytical power for the study of LLMs: the \emph{encyclopedia},
+\emph{overcoding}, and \emph{interpretive cooperation}. These are not merely
+suggestive metaphors; they are theoretically precise tools that, as the
+experimental section shows, can be operationalized and tested.
+
+\subsection{The Encyclopedia}
+
+For Eco, meaning is not exhausted by dictionary definition. It depends on
+an open, distributed network of cultural knowledge, interpretive habits,
+practical scripts, intertextual memories, and socially shared assumptions
+\citep{Eco1984}. The dictionary model treats meaning as a fixed set of
+necessary and sufficient features organized in a taxonomic tree. The
+encyclopedia model treats meaning as a potentially unlimited network of
+culturally organized interpretants, navigable in different directions
+depending on contextual cues \citep{Eco1976,Eco1984}.\footnote{Eco's
+encyclopedia model transforms Peirce's concept of unlimited semiosis, in
+which every interpretant becomes a sign requiring further interpretation
+\citep{Peirce1931}. Unlike Peirce, Eco insists on the pragmatic and
+cultural constraints that delimit this process in practice \citep{Eco1990}.
+The Peircean framing matters for LLMs: \citet{HallMirrors2026} has argued
+that basic LLMs are trapped in a chain of signifier-to-signifier relations
+with no thirdness---no interpretant that connects the sign to action or
+habit. The encyclopedia thesis adopted here makes a weaker claim: not that
+LLMs have genuine interpretants, but that their outputs are organized by the
+same culturally weighted pathways that structure human encyclopedic access.
+This is a claim about the functional organization of outputs, not about
+grounding.}
+
+The distinction is analytically precise: in a dictionary, ``crane'' has a
+primary meaning (a bird) and secondary meanings (a machine, a verb) organized
+hierarchically. In an encyclopedia, ``crane'' is a node connected to
+ornithology, construction, Japanese art, port logistics, origami, and Ichabod
+Crane through culturally weighted but non-hierarchical pathways. Which pathway
+is activated depends on context.
+
+This distinction matters for LLMs because it generates two testable predictions.
+The first is \emph{mechanistic}: a system with encyclopedic organization should
+disambiguate polysemous items in ways that require multi-hop cultural inference
+unavailable to a frequency-ranked sense dictionary---and crucially, it should
+do so on items where encyclopedic inference and statistical co-occurrence
+predict \emph{divergent} responses. The second is \emph{distributional}: at
+scale, context-based grouping of outputs should produce more coherent clusters
+than lemma-based grouping, and this effect should persist in conditions where
+domain vocabulary is absent from the prompt.
+
+\subsection{Overcoding}
+
+Eco uses the term \emph{overcoding} to describe the superimposition of
+additional cultural codes upon a sign or text, constraining its interpretation
+toward culturally stabilized pathways \citep{Eco1976}.\footnote{Overcoding
+refers to the rule-governed process by which a sign already codified at one
+level receives further cultural specification at a higher level, directing
+interpretation toward the most conventional reading. It is not a defect but
+a structural property of any signifying practice that has accumulated social
+convention. See \citet{Eco1976}, Chapter~2.} When overcoding is pervasive,
+meaning follows paths of least resistance: the most conventional, the most
+familiar, the most culturally entrenched.
+
+LLMs are, by construction, overcoding machines. Their generative mechanism
+privileges high-probability continuations---tokens most frequently associated
+with a given context in the training corpus. The most probable continuation
+is, by definition, the most culturally sedimented one. This produces outputs
+that conform to dominant narrative schemas, rhetorical conventions, and
+ideological defaults---not because the machine ``believes'' them, but because
+they constitute the path of least statistical resistance.
+
+Overcoding, in Eco's account, is not merely a synchronic property of a code
+but a social-historical process: conventions solidify as cultural usage
+accumulates and pathways become more deeply grooved. This diachronic dimension
+connects directly to Lotman's theory of the semiosphere \citep{Lotman1990}.
+For Lotman, semiotic space is organized around a center where codes are most
+stable, most explicit, and most self-describing, and a periphery where codes
+are less stabilized and more open to transformation. The semiosphere does not
+evolve uniformly: it undergoes periods of gradual sedimentation punctuated by
+explosive reorganization when peripheral formations break through into the
+center. LLMs, trained predominantly on majority-language, majority-culture
+corpora, implicitly model the center of specific semiospheres at specific
+historical moments. Their outputs therefore reinforce center-periphery
+asymmetries not merely by reproducing them, but by removing the creative
+friction---misunderstanding, idiolectal deviation, translational loss---that,
+in Lotman's account, is the primary mechanism of semiospheric renewal. An
+encyclopedia that learns from a corpus, then generates text that is fed back
+into subsequent training corpora, is not merely a passive recorder of the
+semiosphere: it is a mechanism for accelerating sedimentation at the center
+while starving the periphery of the generative noise that drives semiotic
+evolution.
+
+The overcoding thesis thus generates two empirical predictions. Synchronically,
+outputs for culturally charged concepts should \emph{conform to pre-identified
+cultural schema templates} more closely than outputs for matched culturally
+neutral concepts---and this schema conformity should exceed the conformity
+already present in the training corpus. Diachronically, schema conformity
+should increase across successive model generations for concepts of rising
+cultural salience, while remaining stable for concepts whose cultural charge
+has not changed.
+
+\subsection{Interpretive Cooperation and the Pragmatics of Context}
+
+Eco argues that texts are designed to activate a Model Reader capable of
+actualizing their semantic potential \citep{Eco1979}. A text does not fully
+determine its own meaning; it requires a competent interpreter who activates
+the relevant codes, supplies background knowledge, and restrains arbitrary
+readings \citep{Eco1979,Eco1990}. Meaning is therefore a cooperative
+achievement, not a unilateral emission.
+
+LLM-generated discourse depends even more radically on such cooperation.
+The user must specify the frame, delimit the task, supplement background
+assumptions, and judge the output's adequacy. But this cooperation is
+asymmetric in a distinctive way: what remains implicit in human communication---
+shared institutional context, mutual knowledge, situational awareness---must
+often be made \emph{explicit} in the prompt. Context, which is ordinarily a
+background condition of interaction, becomes a designed input that requires
+labor.
+
+This labor is what Eco's concept of the Model Reader illuminates and what
+Bourdieu's analysis of linguistic capital explains sociologically
+\citep{Bourdieu1991}. Eco's Model Reader is a \emph{textual} construct: it
+names the set of competences that a text presupposes in its ideal interpreter.
+But a text's Model Reader is not distributed randomly across the social
+space. Bourdieu's linguistic capital---the ensemble of linguistic resources
+whose possession confers communicative authority and access to legitimate
+discourse---is precisely the social mechanism by which the competences
+presupposed by authoritative texts are distributed unequally along lines
+of class, education, and cultural origin. The connection between the two
+concepts is therefore not a juxtaposition but a theoretical articulation:
+Eco's Model Reader specifies \emph{what} competences are required; Bourdieu's
+linguistic capital explains \emph{why} those competences are not equally
+available. For LLMs, this articulation generates the concept of
+\emph{semiotic cost of context}: the labor required to construct the
+interpretive frame that activates the model's relevant encyclopedic pathways
+is a new form of the old asymmetry.
+
+This cost is measurable on both sides of the exchange. On the output side,
+the quality of LLM-generated discourse varies with the contextual richness
+of the prompt---the model activates better encyclopedic pathways when given
+more precise framing. On the production side, constructing a precise frame
+costs labor---time, cognitive effort, iterative refinement, failed attempts,
+and the frustration of receiving outputs that are not what was needed. The
+inequality is not only that some users receive better outputs; it is that
+some users expend more labor to receive worse ones.
+
+
+%----------------------------------------------------------------------
+\section{Three Theses}
+\label{sec:theses}
+%----------------------------------------------------------------------
+
+\subsection{Thesis~1: LLMs Instantiate a Computational Form of the Encyclopedia}
+\label{sec:thesis1}
+
+LLMs do not operate as static lexicons. They approximate networks of
+associations, semantic neighborhoods, discursive regularities, and latent
+inferential paths. Their outputs emerge from encyclopedia-like organization
+rather than from dictionary-like storage \citep{Eco1984}.
+
+This claim requires precise formulation. The analogy between Eco's encyclopedia
+and LLM latent spaces can be drawn at different levels of rigor. At the weakest
+level, it is merely suggestive: LLMs ``associate'' words in ways that
+``resemble'' cultural knowledge. This level covers most of the existing
+literature. \citet{Vromen2024} treats the LLM's latent space as a model of
+Derridean \emph{\'ecriture}, where meaning arises from differential relations
+among signifiers. \citet{LSM2025} has corroborated the claim from a Saussurean
+perspective, noting that LLMs operate predominantly at the level of the
+signifier. Both accounts are illuminating, but neither specifies what it would
+mean for the analogy to \emph{fail}. An analogy that cannot fail is not
+analytically productive.
+
+At a stronger level, the encyclopedic thesis generates falsifiable predictions.
+But there is a specification problem: superior disambiguation in context-rich
+conditions is predicted by \emph{any} sufficiently large language model with
+adequate context window, not only by one with encyclopedic organization in Eco's
+sense. A model that performs well-calibrated co-occurrence statistics at scale
+would produce identical results to a model with genuine cultural-encyclopedic
+organization, in standard disambiguation tasks. The critical empirical test is
+therefore not whether context helps---it does, trivially---but whether LLM
+disambiguation is \emph{governed by encyclopedic inference in cases where
+encyclopedic inference and high-frequency co-occurrence predict divergent
+outcomes}.
+
+This requires stimuli with two properties: (a) a polysemous item where one
+reading is statistically dominant in the training corpus, and (b) a contextual
+frame where the culturally appropriate reading is the \emph{non-dominant} one,
+requiring cultural schema activation rather than frequency-weighted sense
+assignment. If LLMs systematically choose the encyclopedic reading on these
+items---outperforming both the dictionary model and a co-occurrence-based
+baseline---the encyclopedia thesis is empirically supported in a way that
+survives the frequency-confound objection. This design principle governs
+Experiment~E4 (Section~\ref{sec:exp4}).
+
+The distributional extension of the thesis (Experiment~E1) addresses a
+complementary question: across a broad lexical sample, does context-based
+clustering of outputs exceed lemma-based clustering, and does this hold even
+when domain vocabulary is absent from the prompt? Confirmation of E4 and E1
+provides \emph{independent, converging evidence} for the encyclopedic
+characterization. Each is informative alone; together they constitute a
+two-level confirmation. Disconfirmation of E4 alone would falsify the
+mechanistic prediction; disconfirmation of E1 alone would leave the
+mechanistic prediction untouched while falsifying the distributional one.
+Full disconfirmation of Thesis~1 requires failure of \emph{both} predictions.
+
+\subsection{Thesis~2: LLMs Tend Structurally Toward Overcoding and Stereotypy}
+\label{sec:thesis2}
+
+Because LLMs privilege high-probability continuations, they tend to reproduce
+already stabilized codifications. They are structurally inclined toward what
+is discursively dominant.
+
+The existing literature has addressed this tendency primarily under the rubric
+of ``bias'' \citep{Bender2021}. But overcoding identifies something broader and
+more fundamental than bias in the computational fairness sense. Bias implies a
+correctable deviation from a norm of neutrality. Overcoding identifies a
+structural property: the most statistically salient path through a culturally
+sedimented corpus \emph{is} the stereotype. There is no neutral distribution to
+return to; there is only the culturally weighted one. Corrective interventions
+must therefore either restructure the encyclopedia (modifying whose conventions
+are dominant) or impose post-hoc constraints that substitute one overcoding
+for another.
+
+This structural claim requires an operational proxy that measures not just
+distributional variance across outputs (which entropy measures) but conformity
+to \emph{pre-identified cultural schema templates}. Shannon entropy is an
+insufficient proxy for overcoding because it is agnostic about the content
+of the frames it counts: a low-entropy distribution of \emph{diverse} frames
+would look identical to a low-entropy distribution of \emph{stereotypic} ones.
+What overcoding predicts is not simply convergence but convergence onto a
+specific culturally dominant form. The primary outcome for Experiment~E2 is
+therefore a schema-conformity score: the degree to which each output matches
+a pre-constructed cultural prototype, independently specified by domain
+experts before data collection. Entropy is retained as a secondary measure
+of distributional concentration.
+
+The diachronic prediction concerns not the mechanism driving overcoding across
+model generations (which cannot be isolated from architectural and RLHF
+differences across generations) but the observable trajectory: schema
+conformity should increase across successive model generations for concepts
+of rising cultural salience, and remain stable for stable-salience controls.
+This is a weaker but empirically tractable claim, tested by Experiment~E5.
+
+\subsection{Thesis~3: The Construction of Context Entails a Semiotic Cost
+That Is Unevenly Distributed}
+\label{sec:thesis3}
+
+What remains implicit in human interaction often must be made explicit for the
+model. To obtain relevant output, users must specify aims, roles, assumptions,
+genres, constraints, and background knowledge. Context therefore requires labor,
+and this labor is unevenly distributed along existing lines of social
+stratification.
+
+This thesis requires evidence of asymmetry on \emph{both sides} of the
+exchange. The output side is the easier half: it can be shown that prompt
+sophistication predicts output quality. The harder and theoretically more
+important half is the production side: that users with less semiotic capital
+invest more labor to receive worse outputs. A study that only measures output
+quality differences across prompt levels demonstrates that sophisticated
+prompts yield better results---which is unsurprising and says nothing about
+inequality. The semiotic inequality claim requires demonstrating that the
+labor cost of producing a sophisticated prompt is itself unevenly distributed:
+that users with lower semiotic competence spend more effort, iterate more
+often, experience more failure, and arrive at prompts of lower sophistication
+despite the effort investment.
+
+Experiment~E3 (Section~\ref{sec:exp3}) is designed to address both sides.
+The prompt-factorial component tests the output side. The user study
+($N = 120$, stratified by education level and domain familiarity) measures
+the production side by recording time-on-task, iteration count, self-reported
+difficulty, and component sophistication of spontaneously produced prompts.
+The pre-registered inequality claim requires that prompt sophistication is
+positively correlated with output quality \emph{and} negatively correlated
+with production effort---so that users with higher semiotic competence spend
+less effort to produce better prompts that yield better outputs. Users with
+lower competence spend more effort, produce less sophisticated prompts, and
+receive worse outputs: this is the double bind that constitutes semiotic
+inequality in its specifically computational form.
+
+
+%----------------------------------------------------------------------
+\section{Theoretical-Empirical Bridge}
+\label{sec:bridge}
+%----------------------------------------------------------------------
+
+Before presenting the experimental design, it is necessary to make explicit
+the bridging assumptions that connect Eco's theoretical constructs to the
+computational proxies employed in the experiments. Semiotic theory operates
+at the level of social meaning-making processes; the experiments operate at
+the level of measurable properties of LLM outputs. These levels are not
+identical. The validity of the empirical claims depends on whether the
+proxies track the theoretical constructs with sufficient fidelity, and the
+theoretical claims are evaluable only if the bridging assumptions are explicit
+enough to be challenged.
+
+Table~\ref{tab:bridge} formalizes these connections for all five experiments.
+Three features of the table deserve comment.
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.55}
+\begin{tabularx}{\textwidth}{p{2.2cm}p{2.8cm}p{3.2cm}p{3.5cm}}
+\toprule
+\textbf{Eco Construct} & \textbf{Theoretical Definition} &
+\textbf{Operational Proxy (Experiment)} &
+\textbf{Falsifiability Condition} \\
+\midrule
+Encyclopedia &
+Network of culturally organized interpretants navigated by contextual
+activation, not lemmatic hierarchy &
+(E4) LLM accuracy on divergent-prediction critical items exceeds co-occurrence
+baseline; (E1) Context-based silhouette $>$ lemma-based, replicating in
+paraphrase-context condition &
+E4: LLMs fail to exceed co-occurrence baseline on critical items with frequency-conflicting
+encyclopedic readings. E1: Context silhouette $\leq$ lemma silhouette, or
+paraphrase condition fails to replicate. Either alone partially disconfirms;
+both together fully disconfirm Thesis~1 \\
+\addlinespace
+Overcoding &
+Superimposition of culturally stabilized codes constraining interpretation
+toward dominant convention; intensifies diachronically &
+(E2) Schema-conformity scores for culturally charged concepts exceed matched
+controls and training-corpus baseline; (E5) Schema conformity increases
+across model generations for rising-salience concepts, stable for controls &
+E2: Charged concepts do not exceed matched controls in schema conformity, or
+LLM scores do not exceed corpus baseline. E5: Generation $\times$
+concept-type interaction non-significant. Either alone partially disconfirms;
+both together fully disconfirm Thesis~2 \\
+\addlinespace
+Semiotic cost of context &
+Labor of constructing an interpretive frame for machine-generated discourse;
+unevenly distributed along lines of semiotic competence &
+(E3) Expert-verified output quality increases with contextual richness (output
+side); production effort (time, iterations, component sophistication) is
+negatively correlated with semiotic competence after controlling for domain
+knowledge (production side) &
+If output quality does not increase monotonically, or if the domain
+$\times$ level interaction is non-significant, the output-side prediction
+fails. If production effort is uncorrelated with semiotic competence
+after controls, the inequality claim fails. Both must hold for full
+confirmation of Thesis~3 \\
+\bottomrule
+\end{tabularx}
+\caption{Theoretical-empirical bridge: constructs, operational proxies,
+and falsifiability conditions. E1--E5 refer to the five experiments in
+Section~\ref{sec:experiment}. Confirmation and disconfirmation logic
+for each thesis is specified in the rightmost column.}
+\label{tab:bridge}
+\end{table}
+
+\paragraph{On the E4 baseline design.} The critical innovation in E4 is the
+inclusion of \emph{divergent-prediction critical items}: stimuli for which the
+statistically most frequent sense and the encyclopedically appropriate sense
+differ. On these items, a pure co-occurrence model will systematically choose
+the wrong reading; a system with encyclopedic cultural organization will choose
+correctly. Superior LLM performance on exactly these items is the specific
+prediction that the co-occurrence-confound objection cannot explain away.
+
+\paragraph{On schema conformity vs.\ entropy (E2).} Shannon entropy measures
+how concentrated a distribution is, not what it is concentrated \emph{on}.
+Two distributions could have identical entropy while one clusters on a
+culturally stereotypic frame and the other on a non-stereotypic one. Schema
+conformity, operationalized as the mean cosine similarity between output
+embeddings and a pre-constructed prototype embedding for each concept
+(specified before data collection by domain experts), measures what overcoding
+predicts: not mere convergence but convergence onto a culturally dominant form.
+Entropy is retained as a secondary measure; the two measures are expected to
+correlate but are conceptually distinct.
+
+\paragraph{On multi-model replication.} All five experiments are run on three
+architecturally distinct models: GPT-4o, Llama-3-70B-Instruct, and
+Mistral-Large-2. These models differ in training corpus, architecture scale,
+instruction-tuning procedure, and RLHF implementation. Claims are restricted
+to patterns that replicate across all three. Where results diverge, the
+divergence is analyzed with reference to known architectural differences;
+model-specific results are labeled as such and not presented as properties of
+LLMs as a class. The three-model replication is the minimum condition for
+treating experimental results as evidence about structural tendencies of
+instruction-tuned LLMs rather than about idiosyncrasies of a particular
+system.
+
+
+%----------------------------------------------------------------------
+\section{Experimental Design}
+\label{sec:experiment}
+%----------------------------------------------------------------------
+
+The five experiments are ordered by logical dependency. E4 and E1 establish
+the encyclopedic mechanism. E2 and E5 establish the overcoding tendency
+synchronically and diachronically. E3 tests the social-access thesis.
+Table~\ref{tab:exp_summary} summarizes the design. All study materials,
+pre-registration documents, and analysis code will be made available on
+OSF prior to data collection (pre-registration DOI to be inserted upon
+filing).
+
+\subsection{Shared Methods}
+\label{sec:shared}
+
+\paragraph{Models.} GPT-4o (\texttt{gpt-4o-2024-08-06}), Llama-3-70B-Instruct
+(Together~AI), Mistral-Large-2 (Mistral~AI API). Model versions are fixed and
+logged.
+
+\paragraph{Prompting.} System prompt constant across all conditions:
+``You are a helpful assistant. Respond in English only.'' Experimental
+manipulations are introduced exclusively through the user turn.
+
+\paragraph{Reproducibility.} All API calls are logged (timestamp, model,
+prompt ID, temperature, seed, response, token count). UMAP hyperparameters
+are fixed by grid search on a held-out development set before main analysis.
+Random seeds are fixed and reported.
+
+\paragraph{Embeddings.} Two embedding models from different providers to
+avoid co-training circularity: \texttt{text-embedding-3-large} (OpenAI)
+and \texttt{e5-large-v2} \citep{Wang2022} (Microsoft/Hugging Face).
+Claims restricted to patterns replicating under both.
+
+\paragraph{Pre-registration.} All hypotheses, analysis plans, and stopping
+rules pre-registered on OSF before data collection. The pre-registration
+document specifies: the directional prediction for each experiment, the
+analysis model (including random effects structure), criteria for accepting
+the LLM-as-judge in E3, and the adjudication rule for conflicting results
+within a thesis (see below).
+
+\paragraph{Adjudication rules.} Where experiments within the same thesis
+yield contradictory results (one confirms, one disconfirms), the adjudication
+rule pre-registered for each thesis governs the interpretation:
+\begin{itemize}
+\item \emph{Thesis~1}: E4 (mechanistic) takes precedence over E1
+      (distributional); E4 confirmation with E1 disconfirmation supports a
+      restricted version of the thesis (mechanistic but not distributional).
+\item \emph{Thesis~2}: E2 (synchronic) and E5 (diachronic) are independent;
+      either may be confirmed or disconfirmed independently; both must be
+      confirmed for the full diachronic claim to stand.
+\item \emph{Thesis~3}: The output-side (prompt-factorial) and production-side
+      (user study) predictions are necessary for the \emph{inequality} claim
+      but the output-side is sufficient for a weaker quality-differential claim.
+\end{itemize}
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{p{0.7cm}p{1.5cm}p{1.7cm}p{2.8cm}p{2.8cm}p{2.5cm}}
+\toprule
+\textbf{Exp.} & \textbf{Thesis} & \textbf{Outputs} & \textbf{Key analysis} &
+\textbf{Confound addressed} & \textbf{Primary outcome} \\
+\midrule
+E4 & T1 & 6,000 &
+Disambiguation accuracy by system $\times$ depth; critical items analysis &
+Frequency confound; prompt injection &
+Accuracy on divergent-prediction items \\
+\addlinespace
+E1 & T1 & 9,000 &
+Silhouette (context vs.\ lemma); paraphrase condition; baselines &
+Embedder circularity; lexical priming &
+Silhouette differential, paraphrase condition \\
+\addlinespace
+E2 & T2 & 48,000 &
+Schema conformity vs.\ corpus baseline; entropy secondary &
+Entropy agnostic to frame content; corpus confound &
+Schema-conformity score \\
+\addlinespace
+E5 & T2 & 4,000 &
+Conformity trajectories across 4 generations &
+Synchronic artifact &
+Generation $\times$ concept-type interaction \\
+\addlinespace
+E3 & T3 & 14,400+ &
+Mixed-effects quality model; user study ($N=120$) double bind &
+LLM-judge circularity; output-only operationalization &
+Quality (output) and effort-to-quality ratio (production) \\
+\bottomrule
+\end{tabularx}
+\caption{Experimental overview: thesis, outputs, key analysis, confound
+addressed, and primary outcome for each experiment.}
+\label{tab:exp_summary}
+\end{table}
+
+%----------------------------------------------------------------------
+\subsection{Experiment~E4: Dictionary--Encyclopedia Diagnostic}
+\label{sec:exp4}
+%----------------------------------------------------------------------
+
+\emph{Tests Thesis~1 (mechanistic prediction).}
+
+\subsubsection{Rationale}
+
+The encyclopedic thesis claims that LLMs use cultural-inferential context,
+not frequency-ranked sense assignment. This claim is testable only on stimuli
+where the two mechanisms predict \emph{different} outcomes. Standard
+disambiguation tasks do not satisfy this requirement because a sufficiently
+capable co-occurrence model will outperform a dictionary model and coincidentally
+agree with the encyclopedic prediction on most items. The design must include a
+critical-items stratum---items where the most frequent sense in the training
+corpus is \emph{not} the contextually appropriate one---so that statistical
+advantage and encyclopedic accuracy can be dissociated.
+
+\subsubsection{Materials}
+
+Fifty minimal-pair sentences are constructed. Each pair consists of:
+(a) a sentence activating the statistically dominant sense of the target item,
+and (b) a sentence activating a culturally appropriate but frequency-\emph{non-}dominant
+sense through inferential context. The pairs are stratified across three
+inferential-depth categories:
+
+\begin{itemize}
+\item \textbf{Shallow} ($n = 15$): single-hop cultural inference
+      (e.g., ``the crane at the construction site'' vs.\ ``the crane by the
+      reed beds'').
+\item \textbf{Medium} ($n = 15$): two-hop script knowledge
+      (e.g., a sentence where the appropriate reading requires activating a
+      professional script that is culturally salient but corpus-rare).
+\item \textbf{Deep} ($n = 20$): requires culturally specific schema activation
+      whose co-occurrence trace in general corpora is low.
+\end{itemize}
+
+\noindent\textbf{Critical items.} Within each stratum, a subset of items
+(target: $n = 8$ per stratum, $n = 24$ total) is designated as
+\emph{critical items}: sentences of type~(b) where corpus-frequency analysis
+confirms that the encyclopedic reading is the non-dominant one in the training
+distribution. This is verified using WordNet sense frequency data
+\citep{Miller1995} and sense-tagged corpus statistics. On these items, a
+co-occurrence model predicts the wrong reading; an encyclopedic model predicts
+the correct one. The critical-items analysis is the primary test of Thesis~1.
+
+Ground truth labels are assigned by five independent annotators (professional
+linguists, lexical semantics specialization); Fleiss' $\kappa \geq 0.80$
+required; items below threshold are replaced.
+
+\subsubsection{Procedure}
+
+Each sentence is presented with the probe: ``What does the word `[TARGET]' refer
+to in the following sentence? Provide a one-sentence explanation.'' $k = 20$
+responses per sentence per model at $T = 0.0$ (deterministic; primary analysis)
+and $T = 0.7$ (distributional analysis), yielding $50 \times 20 \times 3 = 3{,}000$
+responses per temperature condition. Responses are classified (encyclopedic /
+dictionary / neither) by a rubric-based classifier validated on a held-out
+set (Cohen's $\kappa$ reported).
+
+\subsubsection{Baselines}
+
+(1)~\emph{Dictionary model}: most frequent WordNet sense. (2)~\emph{WSD
+system}: \citet{Bevilacqua2020} \texttt{EWISER}, trained on SemEval data.
+(3)~\emph{Co-occurrence model}: a large n-gram language model with no
+instruction tuning (GPT-2 XL) used purely as a frequency-weighted sense
+predictor. (4)~\emph{Human ceiling}: na\"ive annotators, $n = 30$.
+
+\subsubsection{Analysis}
+
+Disambiguation accuracy is computed per system per inferential-depth stratum,
+with a separate analysis restricted to critical items. A mixed-effects logistic
+regression is fitted: correct $\sim$ system $\times$ depth $\times$ item\_type
+(critical vs.\ non-critical) + (1$|$sentence) + (1$|$lemma). The pre-registered
+primary test is the three-way interaction: LLMs should outperform the
+co-occurrence baseline specifically on critical items at medium and deep
+inferential depth.
+
+%----------------------------------------------------------------------
+\subsection{Experiment~E1: Encyclopedic Organization at Distributional Scale}
+\label{sec:exp1}
+%----------------------------------------------------------------------
+
+\emph{Tests Thesis~1 (distributional prediction).}
+
+\subsubsection{Materials}
+
+Thirty polysemous terms are drawn from a stratified OED sample:
+\emph{high-ambiguity} ($n = 12$; e.g., \emph{bank}, \emph{crane},
+\emph{pitch}, \emph{cell}), \emph{medium-ambiguity} ($n = 12$), and
+\emph{near-monosemous controls} ($n = 6$). For each term, five prompt
+variants are constructed:
+
+\begin{enumerate}
+\item \textbf{Neutral}: ``Tell me about [term].''
+\item \textbf{Explicit-A}: Domain named explicitly (dominant sense).
+\item \textbf{Explicit-B}: Domain named explicitly (secondary sense).
+\item \textbf{Paraphrase-A}: Domain implied through narrative framing
+      without domain vocabulary (dominant sense).
+\item \textbf{Paraphrase-B}: Domain implied through narrative framing
+      without domain vocabulary (secondary sense).
+\end{enumerate}
+
+Paraphrase conditions (4--5) are critical: context-sensitivity that persists
+without domain vocabulary in the prompt cannot be attributed to lexical priming.
+
+\subsubsection{Procedure}
+
+$30 \times 5 \times 20 \times 3 = 9{,}000$ outputs at $T = 0.7$, embedded under
+both embedding models (Section~\ref{sec:shared}).
+
+\subsubsection{Analysis}
+
+For each of the six embedding corpora (3 models $\times$ 2 embedders):
+
+\begin{enumerate}
+\item UMAP dimensionality reduction with hyperparameters fixed by grid
+      search on a held-out development set. \emph{Stability protocol}:
+      five independent UMAP runs per corpus; silhouette scores are averaged
+      across runs; items with cross-run variance exceeding a pre-specified
+      threshold ($\text{SD} > 0.05$) are flagged.
+\item Two clustering analyses: by lemma and by context. Silhouette scores
+      per grouping, stratified by ambiguity stratum.
+\item Pre-registered: silhouette(context) $>$ silhouette(lemma) in high- and
+      medium-ambiguity strata; silhouette(lemma) $\geq$ silhouette(context) in
+      monosemous controls.
+\item Paraphrase-specific analysis: the silhouette difference
+      silhouette(context) $-$ silhouette(lemma) is computed separately for
+      explicit conditions (2--3) and paraphrase conditions (4--5). A significant
+      positive difference in paraphrase conditions rules out lexical priming.
+\end{enumerate}
+
+Three baselines: TF-IDF, GloVe \citep{Pennington2014}, outputs of
+\texttt{EWISER} \citep{Bevilacqua2020}. LLM context-based silhouette scores
+must exceed all three baselines for the encyclopedic claim.
+
+%----------------------------------------------------------------------
+\subsection{Experiment~E2: Schema Conformity and Overcoding}
+\label{sec:exp2}
+%----------------------------------------------------------------------
+
+\emph{Tests Thesis~2 (synchronic prediction).}
+
+\subsubsection{Rationale}
+
+Overcoding predicts conformity to a dominant cultural frame, not merely
+low output variance. The primary outcome is therefore schema conformity:
+the degree to which each output matches a pre-constructed cultural prototype
+for each concept. Shannon entropy over a topic-model distribution is a
+secondary measure of distributional concentration. The two measures address
+distinct questions: schema conformity asks ``does the output conform to the
+dominant cultural frame?''; entropy asks ``how diverse are the frames
+generated?'' Both are relevant; neither alone is sufficient.
+
+\subsubsection{Schema prototype construction}
+
+For each of the 20 culturally charged concepts, a prototype embedding is
+constructed before any LLM data collection. Prototypes are derived from:
+(a) a structured elicitation task administered to $n = 30$ culturally
+representative human raters (who list the five features most associated
+with the concept), (b) the centroid of the top-10 Wikipedia passages most
+frequently associated with the concept, and (c) existing cultural stereotype
+research for person-concepts (e.g., \citealt{Fiske2002} for
+scientist/leader/criminal). The prototype embedding is the sentence embedding
+of the synthesized prototype description; all embeddings use
+\texttt{e5-large-v2} to avoid circularity with the generative models.
+
+\subsubsection{Materials}
+
+Twenty culturally charged concepts (selected via Schwartz Basic Human Values
+taxonomy; cultural stereotypy rated by 5 annotators, ICC $\geq 0.70$) and 20
+matched controls (COCA frequency $\pm 15\%$, Wikipedia length $\pm 20\%$,
+stereotypy $< 3.0/7.0$). Prompt: ``Write a short paragraph describing
+[concept].'' Corpus baselines: 50 Wikipedia paragraphs + 100 Common Crawl
+documents per concept, embedded identically.
+
+\subsubsection{Procedure}
+
+For each of 40 concepts $\times$ 3 models $\times$ 4 temperatures
+$T \in \{0.2, 0.5, 0.8, 1.2\}$: $k = 100$ responses $= 48{,}000$ outputs.
+
+\subsubsection{Analysis}
+
+\paragraph{Schema conformity (primary).} Mean cosine similarity between each
+output's embedding and its concept's prototype embedding, per concept per
+temperature per model. A mixed-effects model is fitted: schema\_conformity
+$\sim$ concept\_type (charged vs.\ control) $\times$ temperature +
+(1$|$concept). Pre-registered primary test: charged concepts exhibit
+significantly higher schema conformity than matched controls, and LLM
+schema conformity for charged concepts exceeds corpus-baseline conformity.
+The latter comparison is the model-amplification test.
+
+\paragraph{Entropy (secondary).} Shannon entropy $H = -\sum_i p_i \log_2 p_i$
+is computed from BERTopic distributions (three hyperparameter configurations;
+Spearman $\rho \geq 0.85$ cross-configuration stability required).
+The adjudication rule for conflicting primary and secondary measures: if
+schema conformity is high but entropy is also high (multiple stereotypic
+frames), the overcoding thesis is confirmed; if schema conformity is low
+but entropy is also low (convergence on a non-stereotypic frame), the result
+is considered anomalous and requires case-by-case analysis. Schema conformity
+takes precedence as the theoretically grounded primary outcome.
+
+\paragraph{Temperature ablation.} Piecewise linear regression of schema
+conformity on temperature tests for a conformity ceiling: the prediction is
+that schema conformity does not decrease monotonically with temperature for
+charged concepts (structural floor), while it increases monotonically for
+neutral controls (no structural constraint).
+
+\paragraph{Demographic markers (person-concepts).} For six person-concepts
+(\emph{scientist}, \emph{leader}, \emph{criminal}, \emph{nurse},
+\emph{professor}, \emph{entrepreneur}): gender, age, and ethnicity markers
+are extracted via a calibrated classifier and compared against corpus
+baselines via McNemar's test. This sub-analysis is reported descriptively
+given the small number of concepts ($n = 6$); no omnibus inference is drawn.
+
+%----------------------------------------------------------------------
+\subsection{Experiment~E5: Diachronic Trajectory of Schema Conformity}
+\label{sec:exp5}
+%----------------------------------------------------------------------
+
+\emph{Tests Thesis~2 (diachronic prediction).}
+
+\subsubsection{Rationale}
+
+The diachronic prediction concerns the observable trajectory of schema
+conformity across model generations, not the mechanism that drives it.
+Model generations differ in training corpus, architecture, and RLHF
+procedure simultaneously; the design does not attempt to isolate any single
+cause. The pre-registered claim is therefore descriptive-diachronic:
+schema conformity increases across generations for rising-salience concepts
+and remains stable for stable-salience controls.
+
+\subsubsection{Materials}
+
+Ten \emph{changing-salience} concepts (Google Trends volume and Wikipedia
+edit frequency increased significantly between 2019 and 2024; e.g.,
+\emph{pandemic}, \emph{remote work}, \emph{artificial intelligence},
+\emph{vaccine}, \emph{disinformation}) and ten \emph{stable-salience}
+controls. Prototype embeddings from E2 are reused where applicable; for
+concepts not in the E2 set, new prototypes are constructed by the same
+procedure.
+
+\subsubsection{Procedure}
+
+E2 protocol ($k = 50$, $T = 0.8$, BERTopic + schema conformity) on four
+model generations: GPT-3 (\texttt{text-davinci-001}), GPT-3.5
+(\texttt{gpt-3.5-turbo-0125}), GPT-4 (\texttt{gpt-4-0613}), GPT-4o. Where
+legacy endpoints are unavailable, archival documentation is provided.
+Total outputs: $20 \times 50 \times 4 = 4{,}000$.
+
+\subsubsection{Analysis}
+
+Schema conformity trajectories are plotted per concept type. Mixed-effects
+model: schema\_conformity $\sim$ generation (ordinal) $\times$
+concept\_type + (1$|$concept). Pre-registered critical test: the interaction
+term. A significant positive interaction (conformity increases across
+generations for changing-salience concepts, not for controls) confirms the
+diachronic prediction.
+
+%----------------------------------------------------------------------
+\subsection{Experiment~E3: The Semiotic Cost of Context}
+\label{sec:exp3}
+%----------------------------------------------------------------------
+
+\emph{Tests Thesis~3.}
+
+\subsubsection{Rationale}
+
+The semiotic inequality thesis requires evidence on \emph{both sides} of the
+exchange: output quality should increase with prompt sophistication (output
+side), and users with lower semiotic capital should invest more effort to
+produce less sophisticated prompts and receive worse outputs (production side).
+The user study is designed to operationalize the double-bind structure of
+semiotic inequality, not merely to demonstrate that prompt quality varies.
+
+\subsubsection{Materials}
+
+\paragraph{Domains.} Ten task domains pre-classified by independent expert
+ratings into high-complexity ($n = 5$: landlord-tenant legal dispute, medical
+test interpretation, pharmaceutical adverse event report, financial instrument
+evaluation, regulatory compliance) and standard-complexity ($n = 5$: rental
+agreement review, dietary recommendation, job application cover letter,
+insurance claim, academic appeal letter). ICC $> 0.75$ required.
+Expert-verified ground-truth benchmark responses constructed per domain.
+
+\paragraph{Prompt components.} Four semiotic components are factorially
+manipulated:
+\begin{itemize}
+\item \textbf{D} (Domain specification): domain named vs.\ not.
+\item \textbf{R} (Role assignment): expert role specified vs.\ not.
+\item \textbf{V} (Technical vocabulary): domain terminology included vs.\ absent.
+\item \textbf{C} (Explicit constraints): output format, scope, standards stated
+      vs.\ absent.
+\end{itemize}
+
+Full $2^4 = 16$-condition factorial for three focal domains; four canonical
+levels (0--3) for all ten domains. Four canonical levels: \textbf{L0}
+$= \{\neg D, \neg R, \neg V, \neg C\}$ (na\"if); \textbf{L1} $= \{D, \neg R,
+\neg V, \neg C\}$ (generic); \textbf{L2} $= \{D, R, V, \neg C\}$ (informed);
+\textbf{L3} $= \{D, R, V, C\}$ (expert).
+
+\subsubsection{Procedure}
+
+\paragraph{LLM output generation.} $10 \times 16 = 160$ prompts $\times$
+$k = 30$ per model $= 14{,}400$ outputs.
+
+\paragraph{Evaluation.} Primary outcome: expert-verified rubric scores.
+Two independent domain experts score a stratified subsample of $n \geq 200$
+responses (20 per domain per canonical level) against the ground-truth
+benchmark on three dimensions: factual accuracy, practical actionability,
+domain-specific precision (1--5 scale). Cohen's $\kappa \geq 0.70$ required;
+ICC(2,1) reported. LLM-as-judge (GPT-4o) is used as a secondary instrument
+\emph{only after} calibration against expert scores ($r \geq 0.75$ required
+for acceptance as secondary; otherwise discarded). Note that GPT-4o is
+excluded from judging its own outputs to eliminate the most direct
+conflict-of-interest; Claude-3.5-Sonnet and Mistral-Large serve as
+cross-model judges for GPT-4o outputs.
+
+\paragraph{User study.} $N = 120$ participants recruited via Prolific
+Academic, stratified across four education levels $\times$ two domain-familiarity
+levels $\times$ three task domains ($n = 10$ per cell). Participants write
+one spontaneous prompt per assigned domain (one-shot condition, explicitly
+noted as a limitation of ecological validity in Section~\ref{sec:discussion}).
+Measured variables:
+\begin{itemize}
+\item Time on task (seconds; Prolific-recorded)
+\item Number of edits before submitting (platform-recorded)
+\item Self-reported difficulty (7-point Likert)
+\item D/R/V/C component presence coded by two independent raters
+      (Cohen's $\kappa \geq 0.80$)
+\item Vocabulary sophistication of the prompt (Type-Token Ratio,
+      Flesch-Kincaid Grade Level)
+\end{itemize}
+
+Participant-authored prompts are fed to GPT-4o; outputs are scored with
+the expert rubric. The production-side semiotic cost is operationalized as
+the ratio of effort invested (time + edits + self-reported difficulty) to
+output quality received: the \emph{effort-to-quality ratio}. The pre-registered
+double-bind prediction is that this ratio is \emph{negatively} correlated
+with education level and domain familiarity---that is, users with lower
+semiotic capital pay more per unit of output quality.
+
+\subsubsection{Analysis}
+
+\paragraph{Output-side.} Mixed-effects model: quality $\sim$ level (ordinal)
+$\times$ domain\_complexity + (1$|$domain) + (1$|$participant). Pre-registered
+interaction hypothesis: quality gain from L0 to L3 is significantly larger
+in high-complexity domains. Monotonicity tested by comparing linear vs.\
+threshold (step-function) fits via AIC. Component attribution from the
+$2^4$ factorial: V and C are pre-registered as expected primary predictors.
+
+\paragraph{Production-side.} Partial correlation between effort-to-quality
+ratio and education level, controlling for domain familiarity. Pre-registered
+prediction: negative partial correlation ($r < 0$), indicating that less
+educated participants invest more effort per unit of output quality. Moderation
+by domain complexity is tested as an exploratory analysis.
+
+
+%----------------------------------------------------------------------
+\section{Implications}
+\label{sec:implications}
+%----------------------------------------------------------------------
+
+The implications stated below are conditional on experimental confirmation
+of the relevant thesis. They are theoretical consequences of the framework,
+not reports of results.
+
+\subsection{If Thesis~1 Is Confirmed: Evaluation Should Attend to
+Encyclopedic Frames}
+
+The dominant framework for evaluating LLM outputs---the ``hallucination''
+framework, measuring deviation from factual reference---is semiotically
+inadequate. LLMs do not primarily fail by producing false propositions; they
+fail by activating inappropriate encyclopedic pathways. An output that is
+``wrong'' is often one that follows a plausible but contextually irrelevant
+path through the associative network. Evaluation metrics should therefore
+attend not only to factual accuracy but to the appropriateness of the
+encyclopedic frame activated. The critical-item accuracy profile from
+Experiment~E4, stratified by inferential depth and domain, would provide
+a principled basis for such metrics.
+
+\subsection{If Thesis~2 Is Confirmed: Overcoding Is Not Correctable by Debiasing}
+
+If LLM schema conformity exceeds training-corpus baselines (E2), then LLMs
+do not merely reproduce the cultural distribution of the training data: they
+amplify it. Corrective interventions face a fundamental semiotic obstacle:
+they must either restructure the statistical distribution of training data
+(raising questions about whose encyclopedia is authorized) or impose post-hoc
+constraints on output distributions (substituting one cultural frame for
+another, not achieving neutrality). If the diachronic prediction (E5) is
+also confirmed---schema conformity increasing across generations for
+rising-salience concepts---the implication is that overcoding is a self-reinforcing
+dynamic that will intensify as LLM outputs re-enter training corpora. Lotman's
+center-periphery dynamic \citep{Lotman1990} is not merely replicated; it is
+structurally accelerated.
+
+\subsection{If Thesis~3 Is Confirmed: Semiotic Literacy Is an Educational Priority}
+
+If the double-bind structure is confirmed by the user study (less educated
+users invest more effort for worse outputs), the inequality generated by LLMs
+is of a specific kind not addressed by access-expansion or domain-knowledge
+education alone. It requires cultivating specifically semiotic competences:
+the ability to identify what frame is needed, to construct it in language the
+model can activate, and to evaluate whether the output has actualized the
+intended encyclopedic pathway. This is a new educational challenge that the
+semiotic tradition, with its long history of reflection on the conditions of
+interpretation, is well positioned to address.
+
+\subsection{Authentication as a Collective Implication of All Three Theses}
+
+The three theses converge on a structural consequence that none entails alone.
+If LLM meaning is encyclopedically organized (Thesis~1), then the same
+surface discourse activates different pathways depending on contextual
+framing---and there is no longer a stable, context-independent sense
+\emph{to} be verified. If LLM outputs systematically overcode dominant
+cultural frames (Thesis~2), then the cultural authority of a text cannot be
+inferred from its fluency or its apparent conformity to convention. If the
+quality of LLM output depends on invisible contextual labor (Thesis~3), then
+the reader cannot know, from the output alone, whether adequate framing was
+supplied. In each case, the provenance of discourse becomes a necessary element
+of its interpretation: one must ask not only what a text says but who or what
+produced it, by what procedure, under what framing, and within which chain of
+accountability.
+
+Authentication is therefore not an external addition to semiosis but, in the
+age of LLMs, one of its functional preconditions. This recalls the importance
+of paratextual devices in stabilizing meaning \citep{Genette1997}, but the
+present situation is more radical: Genette's paratexts orient interpretation;
+authentication metadata for LLM-generated content---provenance certificates,
+model identifiers, prompt logs, editorial chains---condition whether
+interpretation is warranted at all. Developing the taxonomic and normative
+vocabulary for these new paratextual functions is a task for semiotics that
+no other discipline is currently equipped to perform.
+
+
+%----------------------------------------------------------------------
+\section{Discussion}
+\label{sec:discussion}
+%----------------------------------------------------------------------
+
+\subsection{What the Experimental Results Can and Cannot Show}
+
+The experiments measure properties of text outputs from statistical models.
+They do not directly measure semiotic processes in Eco's theoretical sense,
+which are properties of meaning-making in social contexts. The bridging
+assumptions in Section~\ref{sec:bridge} specify how computational proxies
+are connected to semiotic constructs---but they remain assumptions. Several
+implications follow from acknowledging this gap explicitly.
+
+If E4 confirms LLM superiority over the co-occurrence baseline on critical
+items, this is strong evidence that context-sensitive disambiguation of the
+appropriate kind is occurring. But it does not establish that the mechanism
+is encyclopedic organization in Eco's sense of a \emph{culturally weighted}
+network; it is consistent with any sufficiently capable contextual language
+model. The addition of critical items is designed to maximize the gap between
+the co-occurrence and encyclopedic predictions, making the encyclopedic
+interpretation the most parsimonious---but not the only possible---explanation
+for a positive result.
+
+If E2 confirms that schema conformity for charged concepts exceeds the
+corpus baseline, the model-amplification interpretation is the most direct
+one: the LLM has learned not merely to reproduce the training distribution
+but to concentrate it onto the dominant cultural prototype. This is a
+meaningful finding independently of whether it is called ``overcoding''---
+though the semiotic vocabulary adds precision by specifying the social mechanism
+(cultural code superimposition) that the statistical phenomenon instantiates.
+
+What the experiments cannot show is whether these properties generalize beyond
+instruction-tuned English-language LLMs, beyond the concepts and domains
+investigated, or beyond the synchronic moment at which data are collected.
+Scope is explicitly restricted to instruction-tuned English LLMs; claims for
+base models, non-English systems, or future model architectures are explicitly
+withheld pending further investigation.
+
+\subsection{The Intentionality Question}
+
+The claim that LLMs generate discourse ``without intentional consciousness''
+(abstract) positions this work within a contested philosophical terrain.
+The Chinese Room argument \citep{Searle1980} holds that symbol manipulation
+without grounding cannot constitute genuine understanding; the symbol grounding
+problem \citep{Harnad1990} argues that ungrounded symbols lack original meaning.
+These positions imply that LLM semiosis is derived or simulated rather than
+genuine. The present article takes no position on the grounding question at
+the level of individual signs. What it does claim is that, at the level of
+\emph{social function}, LLM outputs circulate as semiotic objects: they are
+interpreted, acted upon, cited, and credited in ways that produce real
+social effects regardless of their internal grounding status. Semiosis is
+here a property of a social process, not of a cognitive state. Eco's own
+framework, which treats semiosis as a property of sign-systems rather than
+of sign-users, supports this social-functional approach
+\citep{Eco1976,Eco1979}.
+
+\subsection{Model Dependency and Scope}
+
+Claims are restricted to patterns replicating across all three models. Where
+results diverge, the most likely explanatory variable is the RLHF and
+safety-tuning procedure, which differs substantially across providers. A
+finding that GPT-4o shows lower entropy than Llama-3 on culturally charged
+concepts, for example, may reflect differential safety filtering rather than
+a difference in structural overcoding tendency. Such divergences are noted and
+analyzed but not treated as counterevidence against the class-level claim.
+
+\subsection{Ecological Validity of the User Study}
+
+The user study in E3 employs a one-shot prompting condition, which does not
+capture the iterative, goal-directed character of naturalistic LLM use. Real
+users revise prompts across multiple turns; their semiotic cost is distributed
+across a session, not concentrated in a single composition event. The one-shot
+design is a necessary simplification for experimental control, but it likely
+\emph{underestimates} the total semiotic cost, particularly for users with
+lower competence who iterate more. Claims about the magnitude of the effort-
+to-quality differential are therefore conservative; the directional claim
+is unaffected.
+
+\subsection{Implications for Computational Fairness and Policy}
+
+The overcoding thesis implies that ``debiasing'' LLMs is semiotically more
+complex than its typical presentation suggests. If schema conformity in LLM
+outputs exceeds training-corpus levels (E2 confirms model amplification), then
+debiasing cannot be achieved by curating the training data alone: the amplification
+is a property of the generative mechanism, not only of the input distribution.
+Interventions at the output level risk substituting one dominant frame for
+another without addressing the structural tendency toward overcoding. Effective
+intervention requires either architectural changes that reduce conformity-amplification,
+or explicit diversity-injection at the generation level, with full awareness
+that any such injection is itself a culturally motivated choice.
+
+The semiotic cost thesis implies that the deployment of LLMs in high-stakes
+domains---legal advice, medical information, administrative communication---may
+exacerbate existing inequalities unless accompanied by semiotic literacy
+education. Access to the tool is a necessary but insufficient condition for
+equitable benefit; what is additionally required is the specific competence
+to frame requests in ways that activate the model's relevant encyclopedic
+pathways. Developing this competence requires educational programmes that
+explicitly address the pragmatics of machine-directed communication---a new
+form of literacy that combines elements of rhetoric, domain knowledge, and
+semiotic theory.
+
+
+%----------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+%----------------------------------------------------------------------
+
+LLMs do not merely add a new instrument to the repertoire of communication.
+They modify the conditions under which discourse is produced, contextualized,
+validated, and trusted. They industrialize the generation of plausible
+signifying sequences in the specific sense that separates textual form from
+the labor of meaning: without the intentional positioning of an author,
+without accountability to an interpretive community, and without the
+friction of communicative failure that ordinarily regulates the social
+circulation of discourse.
+
+Eco's semiotics is particularly well equipped to analyze this transformation
+because it developed precisely the concepts that describe what LLMs exploit:
+the encyclopedia (the cultural network that makes plausibility possible),
+overcoding (the mechanism by which semiosis favors dominant convention), and
+interpretive cooperation (the pragmatic labor that grounding-free discourse
+transfers onto the reader). The three theses advanced in this article each
+operationalize one of these concepts as a falsifiable empirical claim, and the
+five-experiment design tests each claim at two levels---mechanistic and
+distributional for Thesis~1, synchronic and diachronic for Thesis~2, output-side
+and production-side for Thesis~3.
+
+The explicit theoretical-empirical bridge (Section~\ref{sec:bridge}) specifies
+what each proxy measures, what the bridging assumption is, and under what
+conditions the semiotic interpretation would be disconfirmed. Pre-registered
+adjudication rules specify how conflicting evidence within a thesis is to be
+interpreted. This level of specification is unusual in semiotic research, but
+it is the minimum required for claims about LLM behavior---systems whose
+outputs are directly observable and whose statistical structure is measurable---
+to carry empirical weight.
+
+If the experimental results confirm these theses, then semiotics has a
+distinctive contribution to make to the evaluation, governance, and education
+surrounding LLMs: not as an ornamental commentary but as one of the disciplines
+best equipped to explain what is most consequential about them. If the results
+disconfirm them, the theoretical framework must be revised---and the revision
+will itself constitute a contribution to semiotic theory.
+
+
+%----------------------------------------------------------------------
+% References
+%----------------------------------------------------------------------
+
+\bigskip
+\begin{thebibliography}{99}
+
+\bibitem[Adorno and Horkheimer(1944)]{AdornoHorkheimer1944}
+Adorno, T.\,W., \& Horkheimer, M. (1944).
+\newblock \emph{Dialectic of Enlightenment}.
+\newblock New York: Herder and Herder (1972 English translation).
+
+\bibitem[Barthes(1977)]{Barthes1977}
+Barthes, R. (1977).
+\newblock The Death of the Author.
+\newblock In \emph{Image-Music-Text} (pp.~142--148). London: Fontana.
+
+\bibitem[Bateman(2024)]{Bateman2024}
+Bateman, J.\,A. (2024).
+\newblock What Are Large Language Models Doing? A Semiotic Perspective.
+\newblock Research Seminar in Language Technology, University of Helsinki,
+16 May 2024.
+\newblock \url{https://blogs.helsinki.fi/language-technology/files/2024/05/bateman-semiotic-llm-2024.pdf}
+
+\bibitem[Bender et al.(2021)]{Bender2021}
+Bender, E.\,M., Gebru, T., McMillan-Major, A., \& Shmitchell, S. (2021).
+\newblock On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?
+\newblock In \emph{Proceedings of FAccT~2021} (pp.~610--623). ACM.
+\newblock \url{https://doi.org/10.1145/3442188.3445922}
+
+\bibitem[Bevilacqua and Navigli(2020)]{Bevilacqua2020}
+Bevilacqua, M., \& Navigli, R. (2020).
+\newblock Breaking Through the 80\% Glass Ceiling: Raising the State of the
+Art in Word Sense Disambiguation by Incorporating Knowledge Graph Information.
+\newblock In \emph{Proceedings of ACL~2020} (pp.~2854--2864).
+\newblock \url{https://doi.org/10.18653/v1/2020.acl-main.255}
+
+\bibitem[Bourdieu(1991)]{Bourdieu1991}
+Bourdieu, P. (1991).
+\newblock \emph{Language and Symbolic Power}.
+\newblock Cambridge: Polity Press.
+
+\bibitem[Eco(1976)]{Eco1976}
+Eco, U. (1976).
+\newblock \emph{A Theory of Semiotics}.
+\newblock Bloomington: Indiana University Press.
+
+\bibitem[Eco(1979)]{Eco1979}
+Eco, U. (1979).
+\newblock \emph{The Role of the Reader: Explorations in the Semiotics of Texts}.
+\newblock Bloomington: Indiana University Press.
+
+\bibitem[Eco(1984)]{Eco1984}
+Eco, U. (1984).
+\newblock \emph{Semiotics and the Philosophy of Language}.
+\newblock Bloomington: Indiana University Press.
+
+\bibitem[Eco(1990)]{Eco1990}
+Eco, U. (1990).
+\newblock \emph{The Limits of Interpretation}.
+\newblock Bloomington: Indiana University Press.
+
+\bibitem[Fiske et al.(2002)]{Fiske2002}
+Fiske, S.\,T., Cuddy, A.\,J.\,C., Glick, P., \& Xu, J. (2002).
+\newblock A Model of (Often Mixed) Stereotype Content: Competence and Warmth
+Respectively Follow from Perceived Status and Competition.
+\newblock \emph{Journal of Personality and Social Psychology}, 82(6), 878--902.
+\newblock \url{https://doi.org/10.1037/0022-3514.82.6.878}
+
+\bibitem[Genette(1997)]{Genette1997}
+Genette, G. (1997).
+\newblock \emph{Paratexts: Thresholds of Interpretation}.
+\newblock Cambridge: Cambridge University Press.
+\newblock \url{https://doi.org/10.1017/CBO9780511549373}
+
+\bibitem[Hall of Mirrors(2026)]{HallMirrors2026}
+(2026).
+\newblock Language Models' Hall of Mirrors Problem: Why AI Alignment Requires
+Peircean Semiosis.
+\newblock \emph{Philosophy \& Technology}, 38.
+\newblock \url{https://link.springer.com/article/10.1007/s13347-025-00975-5}
+
+\bibitem[Harnad(1990)]{Harnad1990}
+Harnad, S. (1990).
+\newblock The Symbol Grounding Problem.
+\newblock \emph{Physica D: Nonlinear Phenomena}, 42(1--3), 335--346.
+\newblock \url{https://doi.org/10.1016/0167-2789(90)90087-6}
+
+\bibitem[Lackov\'a Bennett(2025)]{LackovaBennett2025}
+Lackov\'a Bennett, \v{L}. (2025).
+\newblock Toward a Biosemiotics Framework for AI: Folding and the Dynamics
+of Meaning.
+\newblock \emph{Sign Systems Studies}, 53(3--4), 444--463.
+\newblock \url{https://doi.org/10.12697/SSS.2025.53.3-4.07}
+
+\bibitem[Leone(2023)]{Leone2023}
+Leone, M. (2023).
+\newblock The Main Tasks of a Semiotics of Artificial Intelligence.
+\newblock \emph{Language and Semiotic Studies}, 9(1), 1--13.
+\newblock \url{https://doi.org/10.1515/lass-2022-0006}
+
+\bibitem[Lotman(1990)]{Lotman1990}
+Lotman, Y.\,M. (1990).
+\newblock \emph{Universe of the Mind: A Semiotic Theory of Culture}.
+\newblock Bloomington: Indiana University Press.
+
+\bibitem[LSM(2025)]{LSM2025}
+(2025).
+\newblock Beyond Tokens: Introducing Large Semiosis Models (LSMs) for Grounded
+Meaning in Artificial Intelligence.
+\newblock Preprints.org, 202504.1830.
+\newblock \url{https://www.preprints.org/manuscript/202504.1830}
+
+\bibitem[Miller(1995)]{Miller1995}
+Miller, G.\,A. (1995).
+\newblock WordNet: A Lexical Database for English.
+\newblock \emph{Communications of the ACM}, 38(11), 39--41.
+\newblock \url{https://doi.org/10.1145/219717.219748}
+
+\bibitem[Not Minds(2025)]{NotMinds2025}
+(2025).
+\newblock Not Minds, but Signs: Reframing LLMs through Semiotics.
+\newblock arXiv:2505.17080.
+\newblock \url{https://arxiv.org/abs/2505.17080}
+
+\bibitem[Nunes and Antunes(2024)]{NunesAntunes2024}
+Nunes, D., \& Antunes, L. (2024).
+\newblock Machines of Meaning.
+\newblock arXiv:2412.07975.
+\newblock \url{https://arxiv.org/abs/2412.07975}
+
+\bibitem[Peirce(1931)]{Peirce1931}
+Peirce, C.\,S. (1931--1958).
+\newblock \emph{Collected Papers of Charles Sanders Peirce}, Vols.~1--8.
+\newblock Cambridge, MA: Harvard University Press.
+
+\bibitem[Pennington et al.(2014)]{Pennington2014}
+Pennington, J., Socher, R., \& Manning, C.\,D. (2014).
+\newblock GloVe: Global Vectors for Word Representation.
+\newblock In \emph{Proceedings of EMNLP~2014} (pp.~1532--1543).
+\newblock \url{https://doi.org/10.3115/v1/D14-1162}
+
+\bibitem[Piantadosi and Hill(2022)]{PiantadosiHill2022}
+Piantadosi, S.\,T., \& Hill, F. (2022).
+\newblock Meaning without Reference in Large Language Models.
+\newblock arXiv:2208.02957.
+\newblock \url{https://arxiv.org/abs/2208.02957}
+
+\bibitem[Popper(1963)]{Popper1963}
+Popper, K.\,R. (1963).
+\newblock \emph{Conjectures and Refutations: The Growth of Scientific Knowledge}.
+\newblock London: Routledge.
+
+\bibitem[Searle(1980)]{Searle1980}
+Searle, J.\,R. (1980).
+\newblock Minds, Brains, and Programs.
+\newblock \emph{Behavioral and Brain Sciences}, 3(3), 417--424.
+\newblock \url{https://doi.org/10.1017/S0140525X00005756}
+
+\bibitem[Signata(2025)]{Signata2025}
+\emph{Signata: Annales des S\'emiotiques} (2025).
+\newblock Special Issue: Semiotics of Space in the Era of Computational Logic
+and Digital Practices.
+\newblock \url{https://journals.openedition.org/signata/5880}
+
+\bibitem[Tomalin(2025)]{Tomalin2025}
+Tomalin, M. (2025).
+\newblock Multimodal Social Semiotics and the Challenge of Artificial Intelligence.
+\newblock \emph{Visual Communication}.
+\newblock \url{https://doi.org/10.1177/26349795251327939}
+
+\bibitem[Vaswani et al.(2017)]{Vaswani2017}
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.\,N.,
+Kaiser, \L., \& Polosukhin, I. (2017).
+\newblock Attention Is All You Need.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 30.
+\newblock \url{https://doi.org/10.48550/arXiv.1706.03762}
+
+\bibitem[Vromen(2024)]{Vromen2024}
+Vromen, E. (2024).
+\newblock Language Models as Semiotic Machines: Reconceptualizing AI Language
+Systems through Structuralist and Post-Structuralist Theories of Language.
+\newblock arXiv:2410.13065.
+\newblock \url{https://arxiv.org/abs/2410.13065}
+
+\bibitem[Wang et al.(2022)]{Wang2022}
+Wang, L., Yang, N., Huang, X., Jiao, B., Yang, L., Jiang, D., Majumder, R.,
+\& Wei, F. (2022).
+\newblock Text Embeddings by Weakly-Supervised Contrastive Pre-Training.
+\newblock arXiv:2212.03533.
+\newblock \url{https://arxiv.org/abs/2212.03533}
+
+\bibitem[Warschauer(2004)]{Warschauer2004}
+Warschauer, M. (2004).
+\newblock \emph{Technology and Social Inclusion: Rethinking the Digital Divide}.
+\newblock Cambridge, MA: MIT Press.
+
+\end{thebibliography}
+
+\end{document}
